@@ -255,8 +255,8 @@ namespace MCRPrinting
                 {
                     bmp.Save(ms, ImageFormat.Bmp);
                     pictureBox1.Image = bmp;
-                    pictureBox1.Width = 150;
-                    pictureBox1.Height = 150;
+                    pictureBox1.Width = 200;
+                    pictureBox1.Height = 200;
                 }
             }
             con.Close();
