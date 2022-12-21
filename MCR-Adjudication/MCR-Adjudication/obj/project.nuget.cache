@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZbBUjdkZOThxgPMahZ1td5mGgX5GEspVW26nV0eORcA6FjfHfkXQKJUKF4z1m9bweXS4rhX4vKMuaXzALapwTw==",
+  "dgSpecHash": "3agVdlyDrQcVpkCBJVA7ZCBVQLSi0Xg7Kmk2wSGw1uENBJkuGZ9QMrVUYd9FvUgYJcgVkDLIdeXEVFVg6DkGAg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\WINSPEAR\\source\\repos\\MCR-Adjudication\\MCR-Adjudication\\MCR-Adjudication.csproj",
+  "projectFilePath": "C:\\Users\\WINSPEAR\\OneDrive\\Documents\\GitHub\\MCR-Apps\\MCR-Adjudication\\MCR-Adjudication\\MCR-Adjudication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\WINSPEAR\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\6.0.11\\microsoft.aspnetcore.spaproxy.6.0.11.nupkg.sha512"
   ],
