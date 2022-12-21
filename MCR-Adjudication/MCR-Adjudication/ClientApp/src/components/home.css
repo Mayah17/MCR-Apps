@@ -1,0 +1,16 @@
+tr:hover{
+    cursor: pointer;
+  }
+  
+  .details{
+    /* height: calc(100vh - 55px); */
+    /* width:max-content; */
+    background-color: #fefae0;
+  }
+  
+  .duplicates{
+    height: 200px;
+    width: 100%;
+    background-color: #f8edeb;
+    overflow: scroll;
+  }
