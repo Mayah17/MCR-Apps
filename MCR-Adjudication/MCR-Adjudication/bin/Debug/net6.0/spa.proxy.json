@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:44411",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "C:\\Users\\WINSPEAR\\OneDrive\\Documents\\GitHub\\MCR-Apps\\MCR-Adjudication\\MCR-Adjudication\\ClientApp\\",
+"MaxTimeoutInSeconds": "120"
+}
+}
