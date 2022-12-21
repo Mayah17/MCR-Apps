@@ -9,17 +9,17 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MCR_Adjudication
 build_property.RootNamespace = MCR_Adjudication
-build_property.ProjectDir = C:\Users\WINSPEAR\source\repos\MCR-Adjudication\MCR-Adjudication\
+build_property.ProjectDir = C:\Users\WINSPEAR\OneDrive\Documents\GitHub\MCR-Apps\MCR-Adjudication\MCR-Adjudication\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\WINSPEAR\source\repos\MCR-Adjudication\MCR-Adjudication
+build_property.MSBuildProjectDirectory = C:\Users\WINSPEAR\OneDrive\Documents\GitHub\MCR-Apps\MCR-Adjudication\MCR-Adjudication
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/WINSPEAR/source/repos/MCR-Adjudication/MCR-Adjudication/Pages/Error.cshtml]
+[C:/Users/WINSPEAR/OneDrive/Documents/GitHub/MCR-Apps/MCR-Adjudication/MCR-Adjudication/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/WINSPEAR/source/repos/MCR-Adjudication/MCR-Adjudication/Pages/_ViewImports.cshtml]
+[C:/Users/WINSPEAR/OneDrive/Documents/GitHub/MCR-Apps/MCR-Adjudication/MCR-Adjudication/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

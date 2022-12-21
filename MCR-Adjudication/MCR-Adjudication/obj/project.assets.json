@@ -48,11 +48,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\WINSPEAR\\source\\repos\\MCR-Adjudication\\MCR-Adjudication\\MCR-Adjudication.csproj",
+      "projectUniqueName": "C:\\Users\\WINSPEAR\\OneDrive\\Documents\\GitHub\\MCR-Apps\\MCR-Adjudication\\MCR-Adjudication\\MCR-Adjudication.csproj",
       "projectName": "MCR-Adjudication",
-      "projectPath": "C:\\Users\\WINSPEAR\\source\\repos\\MCR-Adjudication\\MCR-Adjudication\\MCR-Adjudication.csproj",
+      "projectPath": "C:\\Users\\WINSPEAR\\OneDrive\\Documents\\GitHub\\MCR-Apps\\MCR-Adjudication\\MCR-Adjudication\\MCR-Adjudication.csproj",
       "packagesPath": "C:\\Users\\WINSPEAR\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\WINSPEAR\\source\\repos\\MCR-Adjudication\\MCR-Adjudication\\obj\\",
+      "outputPath": "C:\\Users\\WINSPEAR\\OneDrive\\Documents\\GitHub\\MCR-Apps\\MCR-Adjudication\\MCR-Adjudication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
