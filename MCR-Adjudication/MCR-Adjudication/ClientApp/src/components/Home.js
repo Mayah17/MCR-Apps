@@ -34,71 +34,64 @@ function Home() {
   return (
     <div className="App">
 
-  <div  className="row">
-    <div class="col-3">
-      <div className="table p-2">
-        <table class = "table table-striped table-hover">
-          <thead>
-            <th>Id</th>
-            <th>Name</th>
-            <th>National_id</th>
-          </thead>
-          <tbody>
-            {
-              profiles.map((profile, i)=> {
-                return(<tr key={profile.id} className={selectedRecord === profile.id? 'tr-hover table-primary': 'tr-hover'} onClick={()=> rowSelect(profile.id)}>
-                  <td>{profile.id}</td>
-                  <td>{profile.first_name} {profile.surname}</td>
-                  <td>{profile.national_id}</td>
-                </tr>)
-              })
-            }
-          </tbody>
-          <tfoot></tfoot>
-        </table>
-      </div>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end p-5">
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item"><a class="page-link active" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </nav>
-        </div>
-    </div>
-    <div className="col-md-9 details">
       <div class="row">
         <div class="pt-4 pb-2">
           <h4>Main Record</h4>
         </div>
         <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-6 text-start">
-            <p>
-            <b>First Name</b>: John<br/>
-            <b>Surname</b>: Doe<br/>
-            <b>Other Name</b>: foel<br/>
-            <b>Sex</b>: Male<br/>
-            <b>DOB</b>: 11/11/91<br/>
-            <b>National Id</b>: VDHSYE0N<br/>
-            <b>Place of Birth District</b>: Mchinji<br/>     
-            </p>
+          <div class="col-md-10">
+            <div class="table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Surname</th>
+                    <th>Other Names</th>
+                    <th>Sex</th>
+                    <th>DOB</th>
+                    <th>National Id</th>
+                    <th>Place of Birth District</th>
+                  </tr>
+                  
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td></td>
+                    <td>Male</td>
+                    <td>11/11/91</td>
+                    <td>VHods0</td>
+                    <td>Mchinji</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <th>Mother First Name</th>
+                    <th>Mother Surname</th>
+                    <th>Mother Other Names</th>
+                    <th>Informant Phone Number</th>
+                  </tr>
+
+                  <tr class="row-border">
+                    <td>Jane</td>
+                    <td>Doe</td>
+                    <td></td>
+                    <td>0999123456</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="col-sm-6 col-md-6 col-lg-6 text-start">
-            <p>
-            <b>Mother First Name</b>: --<br/>
-            <b>Mother Other Name</b>: --<br/>
-            <b>Mother Surname</b>: --<br/>
-            
-            </p>
+          <div class="col-md-2 d-flex align-items-center justify-content-center">
+            <button type='button' class="btn btn-primary me-md-2">Skip</button> 
           </div>
 
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end pa-2">
           <button type='button' class="btn btn-success me-md-2">Not a duplicate</button>
-          <button type='button' class="btn btn-primary">Is duplicate</button>
         </div>
       </div>
       <hr/>
@@ -106,55 +99,120 @@ function Home() {
         <div class="pb-2">
         <h4>Possible Duplicate Records</h4>
         </div>
-        <div class="duplicates">
-          <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6 text-start">
-              <p>
-              <b>First Name</b>: John<br/>
-              <b>Surname</b>: Doe<br/>
-              <b>Other Name</b>: foel<br/>
-              <b>Sex</b>: Male<br/>
-              <b>DOB</b>: 11/11/91<br/>
-              <b>National Id</b>: VDHSYE0N<br/>
-              <b>Place of Birth District</b>: Mchinji<br/>     
-              </p>
+          <div class="duplicates">
+            <div class="row">
+              <div class="col-md-10">
+
+                <div class="table">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>First Name</th>
+                        <th>Surname</th>
+                        <th>Other Names</th>
+                        <th>Sex</th>
+                        <th>DOB</th>
+                        <th>National Id</th>
+                        <th>Place of Birth District</th>
+                      </tr>
+                      
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td></td>
+                        <td>Male</td>
+                        <td>11/11/91</td>
+                        <td>VHods0</td>
+                        <td>Mchinji</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                      </tr>
+
+                      <tr>
+                        <th>Mother First Name</th>
+                        <th>Mother Surname</th>
+                        <th>Mother Other Names</th>
+                        <th>Informant Phone Number</th>
+                      </tr>
+
+                      <tr class="row-border">
+                        <td>Jane</td>
+                        <td>Doe</td>
+                        <td></td>
+                        <td>0999123456</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-md-2 d-flex align-items-center justify-content-center">
+                <button type='button' class="btn btn-warning me-md-2">Duplicate with</button> 
+              </div>
+
             </div>
-            <div class="col-sm-6 col-md-6 col-lg-6 text-start">
-              <p>
-              <b>Mother First Name</b>: --<br/>
-              <b>Mother Other Name</b>: --<br/>
-              <b>Mother Surname</b>: --<br/>
-              
-              </p>
+            <hr/>
+            <div class="row">
+              <div class="col-md-10">
+
+                <div class="table">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>First Name</th>
+                        <th>Surname</th>
+                        <th>Other Names</th>
+                        <th>Sex</th>
+                        <th>DOB</th>
+                        <th>National Id</th>
+                        <th>Place of Birth District</th>
+                      </tr>
+                      
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td></td>
+                        <td>Male</td>
+                        <td>11/11/91</td>
+                        <td>VHods0</td>
+                        <td>Mchinji</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                      </tr>
+
+                      <tr>
+                        <th>Mother First Name</th>
+                        <th>Mother Surname</th>
+                        <th>Mother Other Names</th>
+                        <th>Informant Phone Number</th>
+                      </tr>
+
+                      <tr class="row-border">
+                        <td>Jane</td>
+                        <td>Doe</td>
+                        <td></td>
+                        <td>0999123456</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-md-2 d-flex align-items-center justify-content-center">
+                <button type='button' class="btn btn-warning me-md-2">Duplicate with</button> 
+              </div>
+
             </div>
-          </div>
-          <hr/>
-          <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6 text-start">
-              <p>
-              <b>First Name</b>: John<br/>
-              <b>Surname</b>: Doe<br/>
-              <b>Other Name</b>: foel<br/>
-              <b>Sex</b>: Male<br/>
-              <b>DOB</b>: 11/11/91<br/>
-              <b>National Id</b>: VDHSYE0N<br/>
-              <b>Place of Birth District</b>: Mchinji<br/>     
-              </p>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-6 text-start">
-              <p>
-              <b>Mother First Name</b>: --<br/>
-              <b>Mother Other Name</b>: --<br/>
-              <b>Mother Surname</b>: --<br/>
-              
-              </p>
-            </div>
-          </div>
+            <hr/>
+
 
         </div>
       </div>
-    </div>
-  </div>
+
     </div>
   );
 }

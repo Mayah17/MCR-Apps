@@ -9,8 +9,16 @@ tr:hover{
   }
   
   .duplicates{
-    height: 200px;
+    height: 500px;
     width: 100%;
     background-color: #f8edeb;
     overflow: scroll;
+  }
+
+  tr, td{
+    border: none;
+  }
+
+  .row-border{
+    border-top: 2px solid #000000;
   }
