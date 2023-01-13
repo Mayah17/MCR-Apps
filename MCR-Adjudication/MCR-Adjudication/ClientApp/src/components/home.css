@@ -9,7 +9,7 @@ tr:hover{
   }
   
   .duplicates{
-    height: 500px;
+    height: 250px;
     width: 100%;
     background-color: #f8edeb;
     overflow: scroll;
@@ -21,4 +21,8 @@ tr:hover{
 
   .row-border{
     border-top: 2px solid #000000;
+  }
+
+  .btn-tb{
+    width: 150px !important
   }

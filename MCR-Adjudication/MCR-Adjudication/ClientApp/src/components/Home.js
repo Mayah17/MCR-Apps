@@ -1,215 +1,195 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './home.css';
-// import { Axios } from 'axios';
+import axios from 'axios';
+import AuthorizationModal from './AuthorizationModal';
 
 function Home() {
+  const navigation = useNavigate()
+  const [duplicates, setDuplicates] = useState([])
+  const [record, setRecord] = useState({})
+  const [authorized, setAuthorized] = useState(false)
+  const [show, setShow] = useState(false)
+  const [user, setUser] = useState("")
 
-  const [selectedRecord, setSelectedRecord] = useState(0)
+  let getRecords = useCallback(() => {
+    let storedRecord = localStorage.getItem("record")
+    if(storedRecord){
+      let recordData = JSON.parse(storedRecord)
+      setRecord(recordData.childDetails)
+      setDuplicates(recordData.possibleDuplicates)
+      return
+    }
+    let path = `https://10.45.80.51:8082/api/possibleduplicates/${user}` 
+    axios.get(path, {})
+    .then(res => {
+      localStorage.setItem("record", JSON.stringify(res.data))
+      setRecord(res.data.childDetails)
+      setDuplicates(res.data.possibleDuplicates)
+    })
+    .catch(err => {
+    })
+  }, [user])
 
-  let profiles = [
-                  {id:1, first_name:"John", surname:"Doe", national_id:"hfimsa9m"},
-                  {id:2, first_name:"John", surname:"Doe", national_id:"hfimsa9m"},
-                  {id:3, first_name:"John", surname:"Doe", national_id:"hfimsa9m"},
-                  {id:4, first_name:"John", surname:"Doe", national_id:"hfimsa9m"},
-                  {id:5, first_name:"John", surname:"Doe", national_id:"hfimsa9m"},
-                  {id:6, first_name:"John", surname:"Doe", national_id:"hfimsa9m"},
-                  {id:7, first_name:"John", surname:"Doe", national_id:"hfimsa9m"},
-                  {id:8, first_name:"John", surname:"Doe", national_id:"hfimsa9m"},
-                  {id:9, first_name:"John", surname:"Doe", national_id:"hfimsa9m"},
-                  {id:10, first_name:"John", surname:"Doe", national_id:"hfimsa9m"}
-                ]
-
-  let rowSelect = (id) => {
-    setSelectedRecord(id)
+  let updateIsDuplicate = (registrationId, id) => {
+    axios.patch(`https://10.45.80.51:8082/api/adjudication/${registrationId}/${id}/${user}`, {})
+    .then(res => {
+      localStorage.removeItem("record")
+      getRecords()
+    })
+    .catch(err => {
+    })
   }
 
-  let getRecords = () => {
-    console.log("start")
+  let updateIsNotDuplicate = (id) => {
+    axios.post(`https://10.45.80.51:8082/api/adjudication`, {editUser: user, registrationId: id})
+    .then(res => {
+      localStorage.removeItem("record")
+      getRecords()
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+  }
+
+  let skip = () => {
+    localStorage.removeItem("record")
+    getRecords()
+  }
+
+  let checkAuth = useCallback(() => {
+    let loggedIn = localStorage.getItem('user')
+    if(loggedIn !== null){
+      setAuthorized(true)
+      setUser(loggedIn)
+      getRecords()
+      return
+    }else{
+      setShow(true)
+    }
+  }, [getRecords])
+
+  let authorize = (user) => {
+    if(user !== null && user !== ""){
+      localStorage.setItem("user", user)
+      setAuthorized(true) 
+      setUser(user)
+      setShow(false)
+      return
+    }else{
+      setShow(true)
+    }
   }
 
   useEffect(() => {
-      getRecords()
-  }, [])
+    setRecord({})
+    setDuplicates([])
+    checkAuth()
+  }, [user, authorized, checkAuth])
+
+  useEffect(() => {
+    let storedUser = localStorage.getItem("user")
+    if (storedUser === null || storedUser === undefined) checkAuth()
+  })
 
   return (
     <div className="App">
-
-      <div class="row">
-        <div class="pt-4 pb-2">
+      <div className="row">
+      <AuthorizationModal display={show} auth={authorize}></AuthorizationModal>
+        <div className="pt-4 pb-2">
           <h4>Main Record</h4>
         </div>
-        <div class="row">
-          <div class="col-md-10">
-            <div class="table">
-              <table class="table">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="table">
+              <table className="table">
                 <thead>
                   <tr>
                     <th>First Name</th>
-                    <th>Surname</th>
-                    <th>Other Names</th>
                     <th>Sex</th>
                     <th>DOB</th>
-                    <th>National Id</th>
-                    <th>Place of Birth District</th>
+                    <th>District</th>
+                    <th>Mother Name</th>
+                    <th>Phone Number</th>
                   </tr>
                   
                 </thead>
                 <tbody>
                   <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td></td>
-                    <td>Male</td>
-                    <td>11/11/91</td>
-                    <td>VHods0</td>
-                    <td>Mchinji</td>
+                    <td>{record.firstname} {record.othernames} {record.surname}</td>
+                    <td>{record.childSex}</td>
+                    <td>{record.dateOfBirth}</td>
+                    <td>{record.birthDistrict}</td>
+                    <td>{record.motherFirstname} {record.motherOthernames} {record.motherSurname}</td>
+                    <td>{record.phoneNumber}</td>
                   </tr>
                   <tr>
+                    <td>
+                      <button type='button' className="btn btn-sm btn-primary me-md-2 btn-tb" onClick={() => skip()}>Skip</button>
+                    </td>
                     <td></td>
-                  </tr>
-
-                  <tr>
-                    <th>Mother First Name</th>
-                    <th>Mother Surname</th>
-                    <th>Mother Other Names</th>
-                    <th>Informant Phone Number</th>
-                  </tr>
-
-                  <tr class="row-border">
-                    <td>Jane</td>
-                    <td>Doe</td>
                     <td></td>
-                    <td>0999123456</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                    <button type='button' className="btn btn-sm btn-success me-md-2 btn-tb" onClick={() => updateIsNotDuplicate(record.registrationId) }>Not a duplicate</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <div class="col-md-2 d-flex align-items-center justify-content-center">
-            <button type='button' class="btn btn-primary me-md-2">Skip</button> 
-          </div>
-
-        </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end pa-2">
-          <button type='button' class="btn btn-success me-md-2">Not a duplicate</button>
         </div>
       </div>
       <hr/>
-      <div class="row">
-        <div class="pb-2">
-        <h4>Possible Duplicate Records</h4>
+      <div className="row">
+        <div className="pb-2">
+        <h4>Possible Duplicates</h4>
         </div>
-          <div class="duplicates">
-            <div class="row">
-              <div class="col-md-10">
+          <div className="duplicates">
+            <div className="row">
+              <div className="col-md-12">
 
-                <div class="table">
-                  <table class="table">
+                <div className="table">
+                  <table className="table">
                     <thead>
                       <tr>
                         <th>First Name</th>
-                        <th>Surname</th>
-                        <th>Other Names</th>
                         <th>Sex</th>
                         <th>DOB</th>
-                        <th>National Id</th>
-                        <th>Place of Birth District</th>
+                        <th>District</th>
+                        <th>Mother Name</th>
+                        <th>Similarity %</th>
                       </tr>
                       
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td></td>
-                        <td>Male</td>
-                        <td>11/11/91</td>
-                        <td>VHods0</td>
-                        <td>Mchinji</td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                      </tr>
-
-                      <tr>
-                        <th>Mother First Name</th>
-                        <th>Mother Surname</th>
-                        <th>Mother Other Names</th>
-                        <th>Informant Phone Number</th>
-                      </tr>
-
-                      <tr class="row-border">
-                        <td>Jane</td>
-                        <td>Doe</td>
-                        <td></td>
-                        <td>0999123456</td>
-                      </tr>
+                      {
+                        duplicates.map((duplicate, i) => {
+                          if (duplicate.birthEntryNumber === "" || duplicate.birthRegistrationNumber === "" || duplicate.personId === "" ){
+                            return <></>
+                          }
+                          return (
+                            <tr key={duplicate.id}>
+                              <td>{duplicate.firstname} {duplicate.othernames} {duplicate.surname}</td>
+                              <td>{duplicate.sex}</td>
+                              <td>{duplicate.dateOfBirth}</td>
+                              <td>{duplicate.birthDistrict}</td>
+                              <td>{duplicate.motherFirstname} {duplicate.motherOthernames} {duplicate.motherSurname}</td>
+                              <td>{duplicate.similarityScore}</td>
+                              <td>
+                                <button type='button' className="btn btn-sm btn-warning me-md-2" onClick={() => updateIsDuplicate(record.registrationId, duplicate.id)}>Duplicate with</button> 
+                              </td>
+                            </tr>
+                          )
+                        })
+                      }
                     </tbody>
                   </table>
                 </div>
               </div>
-              <div class="col-md-2 d-flex align-items-center justify-content-center">
-                <button type='button' class="btn btn-warning me-md-2">Duplicate with</button> 
-              </div>
-
             </div>
-            <hr/>
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="table">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>First Name</th>
-                        <th>Surname</th>
-                        <th>Other Names</th>
-                        <th>Sex</th>
-                        <th>DOB</th>
-                        <th>National Id</th>
-                        <th>Place of Birth District</th>
-                      </tr>
-                      
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td></td>
-                        <td>Male</td>
-                        <td>11/11/91</td>
-                        <td>VHods0</td>
-                        <td>Mchinji</td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                      </tr>
-
-                      <tr>
-                        <th>Mother First Name</th>
-                        <th>Mother Surname</th>
-                        <th>Mother Other Names</th>
-                        <th>Informant Phone Number</th>
-                      </tr>
-
-                      <tr class="row-border">
-                        <td>Jane</td>
-                        <td>Doe</td>
-                        <td></td>
-                        <td>0999123456</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="col-md-2 d-flex align-items-center justify-content-center">
-                <button type='button' class="btn btn-warning me-md-2">Duplicate with</button> 
-              </div>
-
-            </div>
-            <hr/>
-
-
         </div>
       </div>
 
