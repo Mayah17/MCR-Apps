@@ -6,6 +6,8 @@ import AuthorizationModal from './AuthorizationModal';
 
 function Home() {
   const navigation = useNavigate()
+  // const baseUrl = "https://127.0.0.1:8082"
+  const baseUrl = "https://10.45.80.51:8082"
   const [duplicates, setDuplicates] = useState([])
   const [record, setRecord] = useState({})
   const [authorized, setAuthorized] = useState(false)
@@ -20,7 +22,7 @@ function Home() {
       setDuplicates(recordData.possibleDuplicates)
       return
     }
-    let path = `https://10.45.80.51:8082/api/possibleduplicates/${user}` 
+    let path = `${baseUrl}/api/possibleduplicates/${user}` 
     axios.get(path, {})
     .then(res => {
       localStorage.setItem("record", JSON.stringify(res.data))
@@ -32,7 +34,7 @@ function Home() {
   }, [user])
 
   let updateIsDuplicate = (registrationId, id) => {
-    axios.patch(`https://10.45.80.51:8082/api/adjudication/${registrationId}/${id}/${user}`, {})
+    axios.patch(`${baseUrl}/api/adjudication/${registrationId}/${id}/${user}`, {})
     .then(res => {
       localStorage.removeItem("record")
       getRecords()
@@ -42,7 +44,7 @@ function Home() {
   }
 
   let updateIsNotDuplicate = (id) => {
-    axios.post(`https://10.45.80.51:8082/api/adjudication`, {editUser: user, registrationId: id})
+    axios.post(`${baseUrl}/api/adjudication`, {editUser: user, registrationId: id})
     .then(res => {
       localStorage.removeItem("record")
       getRecords()
@@ -105,7 +107,7 @@ function Home() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th>First Name</th>
+                    <th>Name</th>
                     <th>Sex</th>
                     <th>DOB</th>
                     <th>District</th>
@@ -155,7 +157,7 @@ function Home() {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th>First Name</th>
+                        <th>Name</th>
                         <th>Sex</th>
                         <th>DOB</th>
                         <th>District</th>

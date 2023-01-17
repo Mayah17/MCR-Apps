@@ -36,7 +36,7 @@ function AuthorizationModal(props) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Authorization</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <div className="mb-3">
